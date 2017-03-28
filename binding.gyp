@@ -22,10 +22,15 @@
       "-Wextra"
     ]
   },{
-    "target_name": "sp800_185",
+    "target_name": "tupleHash",
     "sources": [
-      "./src/SP800-185.cc",
-      "./src/libkeccak/SP800-185.c"
+      "./src/tupleHash.cc",
+      "./src/libkeccak/SP800-185.c",
+      "./src/libkeccak/KeccakSponge.c",
+      "./src/libkeccak/KeccakP-1600-reference.c",
+      "./src/libkeccak/KeccakP-1600-times2-on1.c",
+      "./src/libkeccak/KeccakP-1600-times4-on1.c",
+      "./src/libkeccak/KeccakP-1600-times8-on1.c"
     ],
     "include_dirs": [
       "<!(node -e \"require('nan')\")"

@@ -39,4 +39,4 @@ void Init(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE exports, Nan::ADDON_REGISTER_FU
   Nan::SetMethod(exports, "tupleHash128", TupleHash128Wrapper);
 }
 
-NODE_MODULE(sp800_185, Init)
+NODE_MODULE(tupleHash, Init)
