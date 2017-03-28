@@ -18,7 +18,7 @@ static NAN_METHOD(TupleHash128Wrapper) {
   size_t outputBitLen = info[1]->IntegerValue();
   Nan::Utf8String customization(info[2].As<v8::Object>());
 
-  TupleElement tuple[jsArray->Length()];
+  TupleElement * tuple = new TupleElement[jsArray->Length()];
   for (unsigned int i = 0; i < jsArray->Length(); i++) {
     v8::Local<v8::Object> tupleBuffer = jsArray->Get(i).As<v8::Object>();
     tuple[i].input = (unsigned char *) node::Buffer::Data(tupleBuffer);
@@ -28,6 +28,7 @@ static NAN_METHOD(TupleHash128Wrapper) {
   v8::Local<v8::Object> outputBuffer = Nan::NewBuffer(outputBitLen / 8).ToLocalChecked();
   unsigned char *outputData = (unsigned char *) node::Buffer::Data(outputBuffer);
   int result = TupleHash128(tuple, jsArray->Length(), outputData, outputBitLen, (unsigned char *) *customization, customization.length() * 8);
+  delete[] tuple;
   if (result == 0) {
     info.GetReturnValue().Set(outputBuffer);
   } else {
